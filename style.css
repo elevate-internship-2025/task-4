@@ -1,0 +1,265 @@
+/* --------------------
+   Aurora — responsive-ready stylesheet
+   Desktop-first styles kept, responsive rules appended
+   -------------------- */
+
+* { box-sizing: border-box; }
+body {
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: #0f172a;
+  background: #f5f7fb;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Header */
+.site-header {
+  width: 100%;
+  background: #fff;
+  border-bottom: 1px solid #e6e9f2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 0;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+.site-header .brand {
+  font-weight: 800;
+  font-size: 24px;
+  margin-left: 80px; /* desktop spacing */
+  color: #111827;
+}
+.main-nav {
+  margin-right: 80px; /* desktop spacing */
+}
+.main-nav a {
+  margin-left: 28px;
+  text-decoration: none;
+  color: #374151;
+  font-weight: 600;
+}
+
+/* Hero */
+.hero {
+  background: linear-gradient(180deg, #ffffff 0%, #f2f5ff 100%);
+  padding: 48px 0;
+}
+.hero-inner {
+  width: 1000px;        /* fixed wrapper for desktop */
+  margin: 0 auto;
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+.hero-text {
+  width: 460px;         /* fixed text column */
+}
+.hero-text h1 {
+  font-size: 42px;
+  margin: 0 0 12px 0;
+}
+.hero-text p {
+  color: #475569;
+  margin-bottom: 18px;
+  font-size: 16px;
+}
+.hero-ctas .btn { margin-right: 12px; }
+.btn {
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+}
+.btn.primary { background: #4f46e5; color: #fff; }
+.btn.ghost { background: transparent; color: #4f46e5; border: 2px solid rgba(79,70,229,0.12); }
+
+/* Hero image area (large) */
+.hero-image img {
+  width: 520px;        /* fixed large image on desktop */
+  height: 320px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(16,24,40,0.08);
+}
+
+/* Main content area */
+.content .container {
+  width: 1000px;        /* fixed layout width */
+  margin: 36px auto;
+}
+.main-columns {
+  display: flex;
+  gap: 32px;
+}
+/* Content column (left) */
+.content-col {
+  width: 680px;         /* fixed width to force desktop layout */
+}
+.card {
+  background: #fff;
+  padding: 18px;
+  margin: 18px 0;
+  border-radius: 10px;
+  border: 1px solid #eef1fb;
+  box-shadow: 0 6px 18px rgba(16,24,40,0.04);
+}
+
+/* Sidebar (right) */
+.sidebar {
+  width: 300px;         /* fixed sidebar width */
+}
+.panel {
+  background: #fff;
+  padding: 16px;
+  margin-bottom: 18px;
+  border-radius: 10px;
+  border: 1px solid #eef1fb;
+}
+.panel img { width: 100%; height: 140px; object-fit: cover; border-radius: 8px; }
+
+/* Footer */
+.site-footer {
+  background: #fff;
+  border-top: 1px solid #e6e9f2;
+  padding: 18px 0;
+}
+.footer-row {
+  width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #6b7280;
+}
+
+/* Utility */
+.muted { color: #6b7280; font-size: 14px; }
+
+/* ============================
+   Responsive adjustments
+   ============================ */
+
+/* Make media scale and prevent overflow */
+img, picture, video, iframe { max-width: 100%; height: auto; display: block; }
+.responsive-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+/* Convert fixed widths to flexible containers for smaller screens */
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+/* Tablet and small laptop */
+@media (max-width: 768px) {
+
+  /* Header spacing becomes fluid */
+  .site-header .brand { margin-left: 16px; font-size: 20px; }
+  .main-nav { margin-right: 16px; }
+
+  /* Make hero wrapper fluid */
+  .hero-inner {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 8px;
+  }
+
+  /* Stack hero columns vertically on smaller screens */
+  .hero-inner {
+    display: flex;
+    flex-direction: column-reverse; /* image first visually (optional) */
+    align-items: center;
+    gap: 20px;
+  }
+
+  .hero-text {
+    width: 100%;
+    text-align: center;
+    padding: 0 8px;
+  }
+  .hero-text h1 { font-size: clamp(26px, 5vw, 36px); }
+  .hero-ctas { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+
+  /* Make hero image scale */
+  .hero-image img {
+    width: 100%;
+    height: auto;
+    max-width: 720px;
+  }
+  /* Main content container becomes fluid */
+  .content .container { width: 100%; max-width: 950px; padding: 0 12px; margin: 24px auto; }
+
+  /* Stack main columns vertically */
+  .main-columns { display: flex; flex-direction: column; gap: 18px; }
+  .content-col, .sidebar { width: 100%; max-width: 100%; }
+
+  /* Cards shrink padding */
+  .card, .panel { padding: 14px; }
+
+  /* Footer stack */
+  .footer-row { width: 100%; flex-direction: column; align-items: center; gap: 8px; }
+
+  /* Navigation + Brand fix for mobile */
+  .site-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;   /* keep Aurora on the left */
+    padding: 16px;
+  }
+
+  .site-header .brand {
+    margin-left: 0;            /* remove huge desktop margin */
+    margin-bottom: 10px;       /* spacing below logo */
+  }
+
+  .main-nav {
+    margin: 0;
+    text-align: left;          /* align nav links to left */
+    width: 100%;               /* so links take full width */
+  }
+
+  .main-nav a {
+    display: block;            /* stack links vertically */
+    margin: 6px 0;             /* spacing between links */
+    padding: 6px 4px;
+  }
+
+  /* Reduce header padding */
+  .site-header { padding: 12px 0; }
+
+  /* Prevent overflow from pre/code/table if any */
+  pre, code, table { max-width: 100%; overflow-wrap: anywhere; }
+}
+
+/* Phones and narrow screens */
+@media (max-width: 480px) {
+
+  body { font-size: 15px; }
+
+  .site-header .brand { margin-left: 12px; font-size: 18px; }
+  .main-nav { margin-right: 12px; }
+
+  .hero-text h1 { font-size: clamp(20px, 7vw, 28px); }
+  .hero { padding: 28px 0; }
+
+  /* Buttons: make full width on tiny screens */
+  .hero-ctas { flex-direction: column; gap: 10px; }
+  .btn { width: 100%; padding: 12px; }
+
+  /* Sidebar: hide extra decorative stuff to reduce clutter */
+  .sidebar .panel img { height: 120px; object-fit: cover; }
+  .sidebar .panel .muted { display: block; }
+
+  /* Remove large left/right desktop margins on footer and header */
+  .footer-row { padding: 0 8px; }
+  .site-header, .site-footer { padding-left: 12px; padding-right: 12px; }
+
+  /* Hide desktop-only visual clutter if present */
+  .desktop-only { display: none !important; }
+}
